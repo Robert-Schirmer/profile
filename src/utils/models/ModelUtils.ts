@@ -1,5 +1,5 @@
 import type { DocumentSnapshot as AdminDocumentSnapshot } from 'firebase-admin/firestore';
-import { DocumentData, QueryDocumentSnapshot, DocumentSnapshot, getDoc, doc } from 'firebase/firestore/lite';
+import { DocumentData, QueryDocumentSnapshot, DocumentSnapshot, getDoc, doc, getDocs, Query } from 'firebase/firestore/lite';
 import { firestore } from '../firebase/app';
 import type { BaseDocRef } from './DocInterfaces';
 
@@ -21,7 +21,6 @@ export const fromFirestore = <T extends BaseDocRef>(docSnap: DocSnap): T => {
 };
 
 export const getDocFromFirestore = async <T extends BaseDocRef>(path: string): Promise<T> => {
-  console.log(firestore.app.name)
   const docSnap = await getDoc(doc(firestore, path));
   return fromFirestore<T>(docSnap);
 };

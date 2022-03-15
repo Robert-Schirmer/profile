@@ -20,8 +20,10 @@ export interface UserRoleDoc extends BaseDocRef {
 }
 
 /*
- * /siteconfigs/about
+ * /siteconfigs/about/options/{option}
  */
-export interface AboutDoc extends BaseDocRef {
-  options: { [label: string]: string };
+export interface AboutOptionDoc extends BaseDocRef {
+  label: string;
+  content: string;
+  order: number;
 }
