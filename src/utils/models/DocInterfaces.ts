@@ -27,3 +27,15 @@ export interface AboutOptionDoc extends BaseDocRef {
   content: string;
   order: number;
 }
+
+/*
+ * /siteconfigs/experience
+ */
+export interface ExperienceDoc extends BaseDocRef {
+  tech: Tech[];
+}
+
+export interface Tech {
+  imgSrc: string;
+  label: string;
+}
