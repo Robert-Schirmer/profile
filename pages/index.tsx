@@ -1,9 +1,10 @@
-import { Fade, Typography } from '@mui/material';
+import { Fade, Grid, Stack, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import About from '../src/components/About';
 import ContentContainer from '../src/components/ContentContainer';
 import Layout from '../src/components/Layout';
 import StackCenter from '../src/components/Layout/StackCenter';
+import OutboundLinks from '../src/components/OutboundLinks';
 import Technologies from '../src/components/Technologies/Technologies';
 import useTypedText from '../src/utils/hooks/useTypedText';
 
@@ -12,11 +13,16 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <StackCenter contentMaxWidth={800} stackSpacing={15}>
+      <StackCenter contentMaxWidth={800} stackSpacing={12}>
         <ContentContainer>
           <Typography variant='h4'>👋{text}</Typography>
           <Fade in={completed}>
-            <Typography variant='body1'>i am a professional developer</Typography>
+            <Stack spacing={3}>
+              <Typography variant='body1'>i am a professional developer</Typography>
+              <Grid>
+                <OutboundLinks />
+              </Grid>
+            </Stack>
           </Fade>
         </ContentContainer>
         <Fade in={completed}>

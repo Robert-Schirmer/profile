@@ -16,6 +16,11 @@ export const sharedTheme: Partial<ThemeOptions> = {
         color: 'secondary',
       },
     },
+    MuiLink: {
+      defaultProps: {
+        underline: 'none',
+      },
+    },
     MuiSwitch: {
       defaultProps: {
         color: 'secondary',

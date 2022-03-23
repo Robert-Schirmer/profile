@@ -20,6 +20,7 @@ const Technologies: React.FC = () => {
   ) : (
     <Grid
       container
+      justifyContent='center'
       spacing={3}
       sx={{
         gap: '20px',
