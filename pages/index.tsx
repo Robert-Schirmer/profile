@@ -1,5 +1,6 @@
-import { Fade, Grid, Stack, Typography } from '@mui/material';
+import { Box, Fade, Grid, Stack, Typography } from '@mui/material';
 import type { NextPage } from 'next';
+import Image from 'next/image';
 import About from '../src/components/About';
 import ContentContainer from '../src/components/ContentContainer';
 import Layout from '../src/components/Layout';
@@ -15,10 +16,17 @@ const Home: NextPage = () => {
     <Layout>
       <StackCenter contentMaxWidth={800} stackSpacing={12}>
         <ContentContainer>
-          <Typography variant='h4'>👋{text}</Typography>
+          <Typography variant='h4' sx={{ marginBottom: '20px' }}>
+            👋{text}
+          </Typography>
           <Fade in={completed}>
             <Stack spacing={3}>
-              <Typography variant='body1'>i am a professional developer</Typography>
+              <Grid container justifyContent='center'>
+                <ProfilePic />
+              </Grid>
+              <Typography variant='body1'>
+                i am a professional software developer located in <b>Ann Arbor, Michigan</b>.
+              </Typography>
               <Grid>
                 <OutboundLinks />
               </Grid>
@@ -47,3 +55,20 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+const picSize = 200;
+const ProfilePic: React.FC = () => {
+  return (
+    <Box
+      sx={{
+        borderRadius: `${picSize}px`,
+        border: (theme) => `3px solid ${theme.palette.primary.main}`,
+        height: `${picSize}px`,
+        width: `${picSize}px`,
+        overflow: 'hidden',
+      }}
+    >
+      <Image height={`${picSize}px`} width={`${picSize}px`} src='/imgs/profile.jpeg' alt='Profile pic' />
+    </Box>
+  );
+};
