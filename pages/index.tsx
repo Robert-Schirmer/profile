@@ -1,6 +1,7 @@
 import { Box, Fade, Grid, Stack, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import { useMemo } from 'react';
 import About from '../src/components/About';
 import ContentContainer from '../src/components/ContentContainer';
 import Layout from '../src/components/Layout';
@@ -11,6 +12,11 @@ import useTypedText from '../src/utils/hooks/useTypedText';
 
 const Home: NextPage = () => {
   const [text, completed] = useTypedText(" hi i'm rob");
+  const age = useMemo(() => {
+    const birthday = new Date('4/30/1998');
+    const MS_IN_YEAR = 31556952000;
+    return Math.floor((Date.now() - birthday.getTime()) / MS_IN_YEAR);
+  }, []);
 
   return (
     <Layout>
@@ -21,8 +27,11 @@ const Home: NextPage = () => {
           </Typography>
           <Fade in={completed}>
             <Stack spacing={3}>
-              <Grid container justifyContent='center'>
+              <Grid container alignItems='center' flexDirection='column'>
                 <ProfilePic />
+                <Typography variant='body1'>
+                  <i>Robert Schirmer, {age}</i>
+                </Typography>
               </Grid>
               <Typography variant='body1'>
                 i am a professional software developer located in <b>Ann Arbor, Michigan</b>.
