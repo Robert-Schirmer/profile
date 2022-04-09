@@ -1,5 +1,5 @@
 import { Box, Typography, TextField } from '@mui/material';
-import { useCallback } from 'react';
+import { useCallback, ChangeEvent } from 'react';
 
 interface Props {
   value: string | number | null;
@@ -22,7 +22,7 @@ const TextInput: React.FC<Props> = ({
   multiline = false,
 }) => {
   const handleChange = useCallback(
-    (event) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       let parsedValue: string | number | null = event.target.value as string;
       if (type === 'number' || nullEmptyString) {
         // If empty string, convert to null

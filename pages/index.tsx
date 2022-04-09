@@ -34,7 +34,7 @@ const Home: NextPage = () => {
                 </Typography>
               </Grid>
               <Typography variant='body1'>
-                i am a professional software developer located in <b>Ann Arbor, Michigan</b>.
+                i am a professional software developer located in <b>Ann Arbor, Michigan</b>
               </Typography>
               <Grid>
                 <OutboundLinks />

@@ -1,12 +1,12 @@
 import Markdown from 'markdown-to-jsx';
-import { useMemo } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import { overrides } from './Overrides';
 
 interface Props {
   children: string;
 }
 
-const MarkdownDisplay: React.FC<Props> = ({ children }) => {
+const MarkdownDisplay: React.FC<PropsWithChildren<Props>> = ({ children }) => {
   const parsedChildren = useMemo(() => {
     // Replace all new lines with actual new line
     return children.replaceAll('\\n', '\n');
