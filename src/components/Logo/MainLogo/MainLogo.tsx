@@ -1,6 +1,11 @@
 import { Typography, Box } from '@mui/material';
+import { useRouter } from 'next/router';
 
 const MainLogo: React.FC = () => {
+  const router = useRouter();
+
+  const emojis = router.pathname === '/bella' ? '🍵 + 🤺' : '☕️ + 👨‍💻';
+
   return (
     <Box
       sx={{
@@ -11,7 +16,7 @@ const MainLogo: React.FC = () => {
         flexDirection: 'column',
       }}
     >
-      <Typography variant='h5'>☕️ + 👨‍💻</Typography>
+      <Typography variant='h5'>{emojis}</Typography>
     </Box>
   );
 };

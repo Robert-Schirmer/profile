@@ -40,7 +40,11 @@ export async function middleware(req: NextRequest) {
 
   if (!authenticated) {
     // Redirect to sign in
-    return NextResponse.redirect(new URL('/login', req.url));
+    const url = new URL('/login', req.url);
+    if (req.nextUrl.pathname !== '/') {
+      url.searchParams.append('redirect', req.nextUrl.pathname);
+    }
+    return NextResponse.redirect(url);
   }
 
   if (req.nextUrl.pathname.startsWith('/admin')) {

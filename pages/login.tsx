@@ -24,10 +24,12 @@ const Login: NextPage = () => {
       body: pass,
     });
     switch (response.status) {
-      case 200:
+      case 200: {
+        const redirect = router.query.redirect ?? '/';
         // Accepted
-        router.push('/');
+        router.push(redirect as string);
         break;
+      }
       case 401:
         // Unaccepted
         setMessage('Unauthorized');

@@ -49,3 +49,10 @@ export interface LinksDoc extends BaseDocRef {
     label: string;
   }[];
 }
+
+/**
+ * /siteconfigs/bellas
+ */
+export interface BellasDoc extends BaseDocRef {
+  mys: string[];
+}
