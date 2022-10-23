@@ -6,14 +6,16 @@ const useTypedText = (text: string, typeSpeed: number = 100): [string, boolean] 
   useEffect(() => {
     setTitle('_');
     let interval: ReturnType<typeof setInterval> | null = null;
+    const characters = Array.from(text);
     const to = setTimeout(() => {
       interval = setInterval(() => {
         setTitle((prevTitle) => {
-          if (prevTitle.length === text.length) {
+          const prevCharacters = Array.from(prevTitle);
+          if (prevCharacters.length === characters.length) {
             interval && clearInterval(interval);
-            return text;
+            return characters.join('');
           }
-          return text.substring(0, prevTitle.length) + '_';
+          return characters.slice(0, prevCharacters.length).join('') + '_';
         });
       }, typeSpeed);
     }, 300);

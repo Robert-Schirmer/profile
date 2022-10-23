@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 const MainLogo: React.FC = () => {
   const router = useRouter();
 
-  const emojis = router.pathname === '/bella' ? '🍵 + 🤺' : '☕️ + 👨‍💻';
+  const emojis = router.pathname === '/bella' || router.query.redirect === '/bella' ? '🍵 + 🤺' : '☕️ + 👨‍💻';
 
   return (
     <Box

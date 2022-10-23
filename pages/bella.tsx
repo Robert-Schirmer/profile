@@ -1,6 +1,6 @@
 import { Fade, Typography } from '@mui/material';
 import type { NextPage } from 'next';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import ContentContainer from '../src/components/ContentContainer';
 import Layout from '../src/components/Layout';
 import StackCenter from '../src/components/Layout/StackCenter';
@@ -9,7 +9,7 @@ import { BellasDoc } from '../src/utils/models/DocInterfaces';
 import { getDocFromFirestore } from '../src/utils/models/ModelUtils';
 
 const Bella: NextPage = () => {
-  const [textIn, setTextIn] = useState(0);
+  const [textDisplayNum, increment] = useReducer((prevState) => prevState + 1, 0);
   const [myText, setMyText] = useState<string[]>([]);
 
   useEffect(() => {
@@ -24,8 +24,8 @@ const Bella: NextPage = () => {
       <StackCenter contentMaxWidth={800} stackSpacing={12}>
         <ContentContainer sx={{ minHeight: '600px' }}>
           {myText.map((text, index) => (
-            <Fade in={textIn >= index} mountOnEnter={true} key={text}>
-              <TypedText onComplete={() => setTextIn((prev) => prev + 1)}>{text}</TypedText>
+            <Fade in={textDisplayNum >= index} mountOnEnter={true} key={text}>
+              <TypedText onComplete={increment}>{text}</TypedText>
             </Fade>
           ))}
         </ContentContainer>
