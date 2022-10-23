@@ -1,6 +1,7 @@
 let config = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
   images: {
     domains: ['storage.googleapis.com'],
   },
