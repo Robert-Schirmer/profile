@@ -1,6 +1,6 @@
 {
   "name": "isipcoffee",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,12 +13,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@emotion/server": "^11.4.0",
     "@emotion/cache": "^11.9.3",
+    "@emotion/react": "^11.9.3",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.9.2",
+    "atropos": "1.0.1",
     "cookie": "^0.5.0",
+    "dayjs": "^1.11.9",
     "firebase": "^9.9.1",
     "firebase-admin": "^11.0.0",
     "jose": "^4.8.3",
