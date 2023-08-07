@@ -1,4 +1,4 @@
-import { Fade, Typography } from '@mui/material';
+import { Fade, ImageList, ImageListItem, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import updateLocale from 'dayjs/plugin/updateLocale';
@@ -10,10 +10,12 @@ import StackCenter from '../src/components/Layout/StackCenter';
 import useTypedText from '../src/utils/hooks/useTypedText';
 import { BellasDoc } from '../src/utils/models/DocInterfaces';
 import { getDocFromFirestore } from '../src/utils/models/ModelUtils';
+import { getAllImageSrc } from '../src/utils/storage';
 
 const Bella: NextPage = () => {
   const [textDisplayNum, increment] = useReducer((prevState) => prevState + 1, 0);
   const [myText, setMyText] = useState<string[]>([]);
+  const [imgSrcs, setImgSrcs] = useState<string[]>([]);
   const timeTogether = useMemo(() => {
     return dayjs().from(dayjs('Sep 9 2022 EST'), true);
   }, []);
@@ -23,12 +25,18 @@ const Bella: NextPage = () => {
       const data = await getDocFromFirestore<BellasDoc>('siteconfigs/bellas');
       setMyText(data.mys);
     })().catch(console.error);
+
+    (async () => {
+      const srcs = await getAllImageSrc('bella');
+      shuffleArray(srcs);
+      setImgSrcs(srcs);
+    })().catch(console.error);
   }, []);
 
   return (
     <Layout>
       <StackCenter contentMaxWidth={800}>
-        <ContentContainer>
+        <ContentContainer sx={{ minHeight: 450 }}>
           {myText.map((text, index) => (
             <Fade in={textDisplayNum >= index} mountOnEnter={true} key={text}>
               <TypedText onComplete={increment}>{text}</TypedText>
@@ -37,6 +45,15 @@ const Bella: NextPage = () => {
         </ContentContainer>
         <ContentContainer>
           <Typography variant='h5'>Happy {timeTogether} together ❤️</Typography>
+        </ContentContainer>
+        <ContentContainer>
+          <ImageList variant='masonry' cols={3} gap={8}>
+            {imgSrcs.map((src, index) => (
+              <ImageListItem key={index}>
+                <img src={src} loading='lazy' alt='b&b' />
+              </ImageListItem>
+            ))}
+          </ImageList>
         </ContentContainer>
         <ContentContainer>
           <Typography variant='h5'>A collection of songs that make me think of us and we dance the best to</Typography>
@@ -82,6 +99,13 @@ const TypedText = React.forwardRef<any, TypedTextProps>(({ onComplete, children 
     </Typography>
   );
 });
+
+function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 TypedText.displayName = 'TypedText';
 
