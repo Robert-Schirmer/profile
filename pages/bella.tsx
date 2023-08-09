@@ -47,7 +47,16 @@ const Bella: NextPage = () => {
           <Typography variant='h5'>Happy {timeTogether} together ❤️</Typography>
         </ContentContainer>
         <ContentContainer>
-          <ImageList variant='masonry' cols={3} gap={8}>
+          <ImageList
+            variant='masonry'
+            cols={3}
+            gap={10}
+            sx={{
+              img: {
+                borderRadius: '10px',
+              },
+            }}
+          >
             {imgSrcs.map((src, index) => (
               <ImageListItem key={index}>
                 <img src={src} loading='lazy' alt='b&b' />
