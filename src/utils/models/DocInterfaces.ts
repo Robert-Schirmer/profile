@@ -55,4 +55,5 @@ export interface LinksDoc extends BaseDocRef {
  */
 export interface BellasDoc extends BaseDocRef {
   mys: string[];
+  playlistSrc: string;
 }

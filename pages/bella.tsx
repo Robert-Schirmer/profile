@@ -16,6 +16,7 @@ const Bella: NextPage = () => {
   const [textDisplayNum, increment] = useReducer((prevState) => prevState + 1, 0);
   const [myText, setMyText] = useState<string[]>([]);
   const [imgSrcs, setImgSrcs] = useState<string[]>([]);
+  const [playlistSrc, setPlaylistSrc] = useState('');
   const timeTogether = useMemo(() => {
     return dayjs().from(dayjs('Sep 9 2022 EST'), true);
   }, []);
@@ -24,6 +25,7 @@ const Bella: NextPage = () => {
     (async () => {
       const data = await getDocFromFirestore<BellasDoc>('siteconfigs/bellas');
       setMyText(data.mys);
+      setPlaylistSrc(data.playlistSrc);
     })().catch(console.error);
 
     (async () => {
@@ -44,7 +46,13 @@ const Bella: NextPage = () => {
           ))}
         </ContentContainer>
         <ContentContainer>
-          <Typography variant='h5'>Happy {timeTogether} together ❤️</Typography>
+          <Typography variant='h5'>Happy {timeTogether} together 🎉</Typography>
+        </ContentContainer>
+        <ContentContainer>
+          <Typography variant='h5'>
+            Reflecting on our time together as partners in business, adventures and fun times, I think how lucky I am to
+            be in this wonderful relationship.
+          </Typography>
         </ContentContainer>
         <ContentContainer>
           <ImageList
@@ -65,19 +73,33 @@ const Bella: NextPage = () => {
           </ImageList>
         </ContentContainer>
         <ContentContainer>
-          <Typography variant='h5'>A collection of songs that make me think of us and we dance the best to</Typography>
+          <Typography variant='h5'>
+            You remain my first thought in the morning and last thought in the evening.
+          </Typography>
+          <br />
+          <Typography variant='h5'>
+            A collection of songs that make me think of us and we dance the best to (the Bella playlist release after a
+            full year of collecting ☺️)
+          </Typography>
         </ContentContainer>
         <ContentContainer>
-          <iframe
-            style={{
-              borderRadius: '12px',
-            }}
-            src='https://open.spotify.com/embed/playlist/3AXFJ0X2KDa7QXurIaov6h?utm_source=generator&theme=0'
-            width='100%'
-            height='380'
-            frameBorder='0'
-            allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-          />
+          {!!playlistSrc && (
+            <iframe
+              style={{
+                borderRadius: '12px',
+              }}
+              src={playlistSrc}
+              width='100%'
+              height='380'
+              frameBorder='0'
+              allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+            />
+          )}
+        </ContentContainer>
+        <ContentContainer>
+          <Typography variant='h5'>I love you with everything I have.</Typography>
+          <br />
+          <Typography>Rob</Typography>
         </ContentContainer>
       </StackCenter>
     </Layout>
